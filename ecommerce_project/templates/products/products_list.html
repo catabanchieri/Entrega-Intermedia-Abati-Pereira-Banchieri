@@ -1,7 +1,16 @@
-{% extends 'base.html' %}
-
-{% block titulo %}
-Lista de productos
+{% extends 'base.html' %} {% block titulo %} Lista de productos {% endblock %}
+{% block contenido_que_cambia %} 
+{%for products in products%}
+<div class="card" style="width: 18rem">
+  <img class="card-img-top" src="..." alt="Card image cap" />
+  <div class="card-body">
+    <h5 class="card-title">{{product.name}}</h5>
+    <p class="card-text">Precio: {{product.price}}</p>
+    <p class="card-text">Descripción: {{product.description}}</p>
+    <p class="card-text">Stock: {{product.stock}}</p>
+    <p class="card-text">Talle: {{product.size}}</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+{%endfor%} 
 {% endblock %}
-
-{% block contenido_que_cambia %} {% endblock %}
