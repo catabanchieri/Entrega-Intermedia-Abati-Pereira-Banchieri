@@ -30,5 +30,6 @@ def products_list(request):
     }
     return render(request, 'products/products_list.html', context=context)
 
-
+def menu(request):
+    return render(request, 'products/menu.html', context={})
 

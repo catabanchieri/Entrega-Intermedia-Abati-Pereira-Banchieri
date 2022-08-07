@@ -1,7 +1,8 @@
 from ctypes import addressof
+from xml.etree.ElementTree import Comment
 from django.shortcuts import render, redirect
-from business.models import Stores
-from business.forms import Forms_stores
+from business.models import Stores, Opinions
+from business.forms import Forms_stores, Forms_opinions
 
 def create_store(request):
     
@@ -30,3 +31,30 @@ def stores_list(request):
         'stores':stores
     }
     return render(request, 'business/stores_list.html', context=context)
+
+
+def create_opinion(request):
+    
+    if request.method == 'POST':
+        form = Forms_opinions(request.POST)
+
+        if form.is_valid():
+            Opinions.objects.create(
+                name = form.cleaned_data['name'],
+                calification = form.cleaned_data['calification'],
+                comment = form.cleaned_data['comment'],
+            )
+            
+            return redirect(opinions_list)
+
+    elif request.method == 'GET':
+        form = Forms_opinions()
+        context = {'form':form}
+        return render(request, 'business/new_opinion.html', context=context)
+
+def opinions_list(request):
+    opinions = Opinions.objects.all() #Trae todos
+    context = {
+        'opinions':opinions
+    }
+    return render(request, 'business/opinions_list.html', context=context)

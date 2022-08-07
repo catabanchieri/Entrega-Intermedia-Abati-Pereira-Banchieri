@@ -1,0 +1,14 @@
+{% extends 'base.html' %} {% block titulo %} Lista de opiniones{% endblock %}
+{% block contenido_que_cambia %} 
+{%for opinions in opinions%}
+<div class="card" style="width: 18rem">
+  <img class="card-img-top" src="..." alt="Card image cap" />
+  <div class="card-body">
+    <h5 class="card-title">{{opinions.name}}</h5>
+    <p class="card-text">Calificación: {{opinions.calification}}</p>
+    <p class="card-text">Comentario: {{opinions.comment}}</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+{%endfor%} 
+{% endblock %}
