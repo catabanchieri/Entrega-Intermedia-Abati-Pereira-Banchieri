@@ -33,3 +33,11 @@ def products_list(request):
 def menu(request):
     return render(request, 'products/menu.html', context={})
 
+def search_products(request):
+    search=request.GET['search']
+    print(search)
+    products=Products.objects.filter(name__icontains=search)
+    print(products)
+    context={'products':products}
+    return render(request,'products/search_products.html',context=context)
+

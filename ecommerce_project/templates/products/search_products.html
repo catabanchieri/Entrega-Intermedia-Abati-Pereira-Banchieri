@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+Busqueda de productos
+{% endblock %}
+
+{% block contenido_que_cambia %} 
+
+{%for products in products%}
+
+<div class="card" style="width: 18rem">
+  <img class="card-img-top" src="..." alt="Card image cap" />
+  <div class="card-body">
+    <h5 class="card-title">{{products.name}}</h5>
+    <p class="card-text">Precio: {{products.price}}</p>
+    <p class="card-text">Descripción: {{products.description}}</p>
+    <p class="card-text">Stock: {{products.stock}}</p>
+    <p class="card-text">Talle: {{products.size}}</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+
+{%endfor%} 
+{% endblock %}
