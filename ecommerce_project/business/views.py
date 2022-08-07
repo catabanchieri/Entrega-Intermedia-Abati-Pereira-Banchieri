@@ -4,6 +4,14 @@ from django.shortcuts import render, redirect
 from business.models import Stores, Opinions
 from business.forms import Forms_stores, Forms_opinions
 
+def business(request):
+        return render(request, 'business.html', context={})
+
+
+
+
+
+
 def create_store(request):
     
     if request.method == 'POST':
@@ -58,3 +66,5 @@ def opinions_list(request):
         'opinions':opinions
     }
     return render(request, 'business/opinions_list.html', context=context)
+
+
