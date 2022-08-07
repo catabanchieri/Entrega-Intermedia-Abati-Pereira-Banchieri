@@ -1,0 +1,15 @@
+{% extends 'base.html' %} {% block titulo %} Lista de productos {% endblock %}
+{% block contenido_que_cambia %} 
+{%for stores in stores%}
+<div class="card" style="width: 18rem">
+  <img class="card-img-top" src="..." alt="Card image cap" />
+  <div class="card-body">
+    <h5 class="card-title">{{stores.name}}</h5>
+    <p class="card-text">Dirección: {{stores.address}}</p>
+    <p class="card-text">Teléfono: {{stores.phone_number}}</p>
+    <p class="card-text">Horario: {{stores.schedules}}</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+{%endfor%} 
+{% endblock %}

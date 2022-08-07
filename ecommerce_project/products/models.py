@@ -9,3 +9,6 @@ class Products(models.Model):
     stock = models.IntegerField()
     size = models.CharField(max_length=5) # S, M, L, XL, XXL
     #image = models.ImageField(upload_to='images/', null=True, blank=True)
+
+class Category(models.Model):
+    name = models.CharField(max_length=50)

@@ -29,3 +29,6 @@ def products_list(request):
         'products':products
     }
     return render(request, 'products/products_list.html', context=context)
+
+
+
