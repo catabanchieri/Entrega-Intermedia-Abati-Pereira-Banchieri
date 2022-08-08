@@ -13,7 +13,8 @@ def create_product(request):
                 price = form.cleaned_data['price'],
                 description = form.cleaned_data['description'],
                 stock = form.cleaned_data['stock'],
-                size = form.cleaned_data['size']
+                size = form.cleaned_data['size'],
+                #image = form.cleaned_data['image']
             )
             
             return redirect(products_list)
