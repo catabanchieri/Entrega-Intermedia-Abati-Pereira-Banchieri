@@ -1,16 +1,24 @@
 {% extends 'base.html' %} {% block titulo %} Lista de productos {% endblock %}
-{% block contenido_que_cambia %} 
+{% block contenido_que_cambia %}
 {%for products in products%}
-<div class="card" style="width: 18rem">
-  <img class="image" src="{{products.image}}" alt="No image" />
-  <div class="card-body">
-    <h5 class="card-title">{{products.name}}</h5>
-    <p class="card-text">Precio: {{products.price}}</p>
-    <p class="card-text">Descripción: {{products.description}}</p>
-    <p class="card-text">Stock: {{products.stock}}</p>
-    <p class="card-text">Talle: {{products.size}}</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+<center>
+  <div class="container">
+    <div class="card" style="width: 18rem">
+      <img class="image"
+        src="https://image.shutterstock.com/image-vector/no-image-available-vector-hand-600w-745639717.jpg"
+        alt="No image" />
+      <div class="card-body">
+        <h5 class="card-title">{{products.name}}</h5>
+        <p class="card-text">Precio: {{products.price}}</p>
+        <p class="card-text">Descripción: {{products.description}}</p>
+        <p class="card-text">Stock: {{products.stock}}</p>
+        <p class="card-text">Talle: {{products.size}}</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
   </div>
-</div>
-{%endfor%} 
+  </div>
+  </div>
+</center>
+{%endfor%}
 {% endblock %}
