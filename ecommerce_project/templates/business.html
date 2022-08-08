@@ -1,11 +1,23 @@
 {% extends 'base.html' %} {% block titulo %} Empresa {% endblock %}
 {% block contenido_que_cambia %} 
 
-
+<div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
 <a href="/business/stores_list" class="btn btn-primary btn-lg btn-block" role="button" aria-pressed="true">Locales</a>
-<a href="/business/new_store" class="btn btn-secondary btn-lg btn-block" role="button" aria-pressed="true">Crear nuevo local</a>
+      </div>
+      <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+      <a href="/business/new_store" class="btn btn-secondary btn-lg btn-block" role="button" aria-pressed="true">Crear nuevo local</a>
+</div>
+<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
 <a href="/business/opinions_list" class="btn btn-primary btn-lg btn-block" role="button" aria-pressed="true">Comentarios de clientes</a>
+</div>
+<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
 <a href="/business/new_opinion" class="btn btn-secondary btn-lg btn-block" role="button" aria-pressed="true">Crear nuevo comentario</a>
+</div>
+<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
 <a href="/admin" class="btn btn-primary btn-lg btn-block" role="button" aria-pressed="true">Panel Administrador</a>
-
+</div>
 {% endblock %}
+</div>
+</div>
