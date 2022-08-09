@@ -5,6 +5,11 @@ nuevas tiendas
 {% endblock %}
 
 {% block contenido_que_cambia %} 
+<div class="container my-4">
+    <center>
+      <h1 class="display-4 my-3">CREAR LOCALES</h1>
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 my-1">
 <form action="" method="POST">
     {% csrf_token %}
     
@@ -17,4 +22,8 @@ nuevas tiendas
     <p><input type="submit" value="Enviar"></p>
     
     </form>
+        </div>
+    </center>
+</div>
+</div>
 {% endblock %}
