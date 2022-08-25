@@ -14,7 +14,7 @@ def create_product(request):
                 description = form.cleaned_data['description'],
                 stock = form.cleaned_data['stock'],
                 size = form.cleaned_data['size'],
-                is_active = form.cleaned_data['is_active']
+                #is_active = form.cleaned_data['is_active']
                 #image = form.cleaned_data['image']
             )
             
