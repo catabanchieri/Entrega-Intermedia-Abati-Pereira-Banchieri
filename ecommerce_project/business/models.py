@@ -12,3 +12,9 @@ class Opinions(models.Model):
     name = models.CharField(max_length=50)
     calification = models.IntegerField(validators=[MaxValueValidator(5), MinValueValidator(0)])
     comment = models.CharField(max_length=150)
+
+class Meta:
+    verbose_name = 'Store'
+    verbose_name_plural = 'Stores'
+    verbose_name = 'Opinion'
+    verbose_name_plural = 'Opinions'

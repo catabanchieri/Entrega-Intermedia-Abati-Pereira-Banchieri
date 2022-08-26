@@ -16,3 +16,7 @@ class Products(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=50)
+
+class Meta:
+    verbose_name = 'Product'
+    verbose_name_plural = 'Products'
