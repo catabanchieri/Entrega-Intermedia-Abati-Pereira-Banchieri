@@ -7,11 +7,6 @@ from business.forms import Forms_stores, Forms_opinions
 def business(request):
         return render(request, 'business.html', context={})
 
-
-
-
-
-
 def create_store(request):
     
     if request.method == 'POST':

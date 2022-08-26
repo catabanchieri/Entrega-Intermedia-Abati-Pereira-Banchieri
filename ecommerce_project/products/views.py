@@ -38,8 +38,9 @@ def menu(request):
 def search_products(request):
     search=request.GET['search']
     print(search)
-    products=Products.objects.filter(name__icontains=search)
-    print(products)
+    products=Products.objects.filter(name__icontains=search) #Trae todos los productos que contengan el criterio de busqueda
     context={'products':products}
     return render(request,'products/search_products.html',context=context)
+
+
 

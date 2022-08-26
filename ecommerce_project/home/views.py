@@ -2,5 +2,6 @@ from django.shortcuts import render
 
 # Create your views here.
 
-def home(request):
-        return render(request, 'home.html', context={})
+class Home(LoginRequiredMixin, ListView):
+    model = Home #modelo que se va a mostrar
+    template_name = 'home/home.html' # template que se va a mostrar
