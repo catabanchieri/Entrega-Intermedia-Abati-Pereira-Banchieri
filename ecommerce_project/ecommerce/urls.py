@@ -7,6 +7,7 @@ urlpatterns = [
     path('',home, name='home'), # home page
     path('admin/', admin.site.urls),
     path('products/', include('products.urls')), #se utiliza el include para que se pueda acceder a las urls de products
+    path('blog/', include('blog.urls')), 
     path('business/', include('business.urls')),    
     path('business/',business, name='business')
 ]
