@@ -1,6 +1,5 @@
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render
 from blog.models import Articles
 
 # clases basadas en vistas
@@ -15,10 +14,12 @@ class Detail_article(DetailView):
 class Create_article(CreateView):
     model = Articles
     template_name = 'articles/create_article.html'
-    fields = '__all__'
+    fields = '__all__' # le indicamos que todos los campos se van a mostrar
     success_url = '/articles/list_articles/'
 
 class Delete_article(DeleteView):
     model = Articles
     template_name = 'articles/delete_article.html'
-    success_url = '/articles/list_articles/'
+    success_url = '/articles/list_articles/' # redireccionamos a la lista de articulos
+
+# nos queda para nosotros hacer el UpdateView
