@@ -1,94 +1,109 @@
-from django.http import Http404
-from multiprocessing import context
-from django.shortcuts import render, redirect
-from products.models import Products
-from products.forms import Forms_products
+from .forms import Forms_products
+from django.http import HttpResponseRedirect
+from django.shortcuts import render
+from django.views import CreateView, UpdateView, DeleteView, ListView, DetailView
+class List_products(ListView):
+    form_class = Forms_products
+    initial = {'key': 'value'}
+    template_name = 'products/products_list.html'
 
-# @login_required
+    def get(self, request):
+        form = self.form_class(initial=self.initial)
+        return render(request, self.products_list, {'form': form})
 
-
-def create_product(request):
-    # if request.user.is_superuser:
-    if request.method == 'POST':
-        form = Forms_products(request.POST, request.FILES)
-
+    def post(self, request):
+        form = self.form_class(request.POST)
         if form.is_valid():
-            Products.objects.create(
-                name=form.cleaned_data['name'],
-                price=form.cleaned_data['price'],
-                description=form.cleaned_data['description'],
-                stock=form.cleaned_data['stock'],
-                size=form.cleaned_data['size'],
-                #image = form.cleaned_data['image']
-            )
+            # <process form cleaned data>
+            return HttpResponseRedirect('products/products_list/')
 
-            return redirect(products_list)
+        return render(request, self.products_list, {'form': form})
+class Detail_product(DetailView):
+    form_class = Forms_products
+    initial = {'key': 'value'}
+    template_name = 'products/detail_products.html'
 
-    elif request.method == 'GET':
-        form = Forms_products()
-        context = {'form': form}
-        return render(request, 'products/new_product.html', context=context)
-    # return redirect('login')
+    def get(self, request):
+        form = self.form_class(initial=self.initial)
+        return render(request, self.products_list, {'form': form})
 
-# @login_required
-def update_product(request, pk):
-    if request.method == 'POST':
-        form = Forms_products(request.POST)
+    def post(self, request):
+        form = self.form_class(request.POST)
         if form.is_valid():
-            product = Products.objects.get(id=pk)
-            product.name = form.cleaned_data['name']
-            product.price = form.cleaned_data['price']
-            product.description = form.cleaned_data['description']
-            product.stock = form.cleaned_data['stock']
-            product.stock = form.cleaned_data['size']
-            product.save()
+            # <process form cleaned data>
+            return HttpResponseRedirect('products/detail_products/')
 
-            return redirect(products_list)
+        return render(request, self.products_list, {'form': form})
+class Create_product(CreateView):
+    form_class = Forms_products
+    initial = {'key': 'value'}
+    template_name = 'products/new_product.html'
+    #fields = '__all__'
 
-    elif request.method == 'GET':
-        product = Products.objects.get(id=pk)
+    def get(self, request):
+        form = self.form_class(initial=self.initial)
+        return render(request, self.products_list, {'form': form})
 
-        form = Forms_products(initial={
-                                        'name':product.name,
-                                        'price':product.price, 
-                                        'description':product.description,
-                                        'stock':product.stock})
-        context = {'form':form}
-        return render(request, 'products/update_product.html', context=context)
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            # <process form cleaned data>
+            return HttpResponseRedirect('products/new_product/')
 
-# @login_required
-def products_list(request):
-    products = Products.objects.all()  # Trae todos
-    context = {
-        'products': products
-    }
-    return render(request, 'products/products_list.html', context=context)
+        return render(request, self.products_list, {'form': form})
+class Delete_product(DeleteView):
+    form_class = Forms_products
+    initial = {'key': 'value'}
+    template_name = 'products/delete_product.html'
 
+    def get(self, request):
+        form = self.form_class(initial=self.initial)
+        return render(request, self.products_list, {'form': form})
 
-def menu(request):
-    return render(request, 'products/menu.html', context={})
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            # <process form cleaned data>
+            return HttpResponseRedirect('products/products_list/')
 
+        return render(request, self.products_list, {'form': form})
+class Update_product(UpdateView):
+    form_class = Forms_products
+    initial = {'key': 'value'}
+    template_name = 'products/update_product.html'
+    #fields = '__all__'
 
-def search_products(request):
-    search = request.GET['search']
-    print(search)
-    products = Products.objects.filter(name__icontains=search)
-    print(products)
-    context = {'products': products}
-    return render(request, 'products/search_products.html', context=context)
-    exception = Http404('No se encontro el producto')
-    raise exception
+    def get(self, request):
+        form = self.form_class(initial=self.initial)
+        return render(request, self.products_list, {'form': form})
 
-# @login_required
-def delete_product(request, pk):
-    if request.method == 'GET':
-        product = Products.objects.get(pk=pk)
-        context = {'product':product}
-        return render(request, 'products/delete_product.html', context=context)
-    elif request.method == 'POST':
-        product = Products.objects.get(pk=pk)
-        product.delete()
-        return redirect(products_list)
-    exception = Http404('No se encontro el producto')
+    def post(self, request):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            # <process form cleaned data>
+            return HttpResponseRedirect('products/products_list/')
+
+        return render(request, self.products_list, {'form': form})
+
+'''
+class Search_product(ListView):
+    form_class = Forms_products
+    initial = {'key': 'value'}
+    template_name = 'products/search_product.html'
+
+    def get(self, request):
+        form = self.form_class(initial=self.initial)
+        return render(request, self.products_list, {'form': form})
+
+    def post(self, request):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            # <process form cleaned data>
+            return HttpResponseRedirect('products/products_list/')
+
+        return render(request, self.products_list, {'form': form})
+'''
+   
   
 
+ 

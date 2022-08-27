@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+    Lista de articulos
+{% endblock %}
+
+{% block contenido_que_cambia %}
+        {{object.image}}
+    <h1>{{object.name}}</h1>
+    <h2>{{object.price}}</h2>
+    <h3>{{object.description}}</h3>
+    <h3>{{object.category}}</h3>
+    <h3>{{object.stock}}</h3>
+    <h3>{{object.size}}</h3>
+    <h3>{{object.created}}</h3>
+    <h3>{{object.updated}}</h3>
+    <h3>{{object.available}}</h3>
+    <a href="/articles/delete-article/{{object.id}}/" class="btn btn-primary">Eliminar</a>
+
+    {% endblock %}
