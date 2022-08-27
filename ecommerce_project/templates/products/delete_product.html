@@ -1,5 +1,3 @@
-
-
 {% extends 'base.html' %}
 
 {% block titulo %}
@@ -11,6 +9,7 @@ Borrar producto
 <p>Nombre del producto: {{product.name}}</p>
 <p>Descripcion del producto: {{product.description}}</p>
 <p>Precio del producto: {{product.price}}</p>
+<p>Stock del producto: {{product.stock}}</p>
 
 <form action="" method="POST">
     {% csrf_token %}

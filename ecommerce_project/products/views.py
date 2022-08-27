@@ -1,3 +1,5 @@
+from django.http import Http404
+from multiprocessing import context
 from django.shortcuts import render, redirect
 from products.models import Products
 from products.forms import Forms_products
@@ -74,6 +76,8 @@ def search_products(request):
     print(products)
     context = {'products': products}
     return render(request, 'products/search_products.html', context=context)
+    exception = Http404('No se encontro el producto')
+    raise exception
 
 # @login_required
 def delete_product(request, pk):
@@ -85,4 +89,6 @@ def delete_product(request, pk):
         product = Products.objects.get(pk=pk)
         product.delete()
         return redirect(products_list)
+    exception = Http404('No se encontro el producto')
+  
 
