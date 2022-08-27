@@ -1,15 +1,9 @@
-from ctypes import addressof
-from xml.etree.ElementTree import Comment
 from django.shortcuts import render, redirect
 from business.models import Stores, Opinions
 from business.forms import Forms_stores, Forms_opinions
 
-def business(request):
-        return render(request, 'business.html', context={})
-
-
-
-
+def menu(request):
+        return render(request, 'business/menu.html', context={})
 
 
 def create_store(request):
