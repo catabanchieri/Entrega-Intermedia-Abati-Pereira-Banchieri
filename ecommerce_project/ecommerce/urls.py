@@ -8,5 +8,6 @@ urlpatterns = [
     path('products/', include('products.urls')), #se utiliza el include para que se pueda acceder a las urls de products
     path('business/', include('business.urls')),
     path('home/',home, name='home'),
-    path('business/',business, name='business')
+    path('business/',business, name='business'),
+     path('users/', include('users.urls')),
 ]
