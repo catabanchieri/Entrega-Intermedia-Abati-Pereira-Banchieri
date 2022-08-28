@@ -6,14 +6,14 @@ Borrar producto
 
 {% block contenido_que_cambia %}
 
-<p>Nombre del producto: {{product.name}}</p>
-<p>Descripcion del producto: {{product.description}}</p>
-<p>Precio del producto: {{product.price}}</p>
-<p>Stock del producto: {{product.stock}}</p>
+<h2>Titulo del producto: {{object.title}}</h2>
+
+<p>Esta seguro que desea eliminarlo?</p>
 
 <form action="" method="POST">
     {% csrf_token %}
     <input type="submit" value="Borrar">
 </form>
+
 
 {% endblock %}
