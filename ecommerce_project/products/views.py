@@ -48,7 +48,7 @@ class Create_product(CreateView):
         form = self.form_class(request.POST)
         if form.is_valid():
             # <process form cleaned data>
-            return HttpResponseRedirect('products/new_product/')
+            return HttpResponseRedirect('products/products_list/')
 
         return render(request, self.products_list, {'form': form})
 class Delete_product(DeleteView):
