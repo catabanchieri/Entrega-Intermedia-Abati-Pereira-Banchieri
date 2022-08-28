@@ -1,0 +1,27 @@
+{% extends 'base.html' %} {% block titulo %} Lista de productos {% endblock %}
+
+{% block contenido_que_cambia %} 
+<center>
+<h1 class="display-4 my-3">DETALLE DE PRODUCTOS</h1>
+</center>
+{%for products in products%}
+  <div class="container mt-3">
+    <center>
+        <div class="card" style="width: 18rem">
+          <img
+            class="image"
+            src="https://images.unsplash.com/photo-1581067721837-e4809b29692d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+            alt="No image"
+          />
+          <div class="card-body">
+            <h5 class="card-title">{{products.name}}</h5>
+            <p class="card-text">Precio: {{products.price}}</p>
+            <p class="card-text">Descripción: {{products.description}}</p>
+            <p class="card-text">Stock: {{products.stock}}</p>
+            <p class="card-text">Talle: {{products.size}}</p>
+            <a href="#" class="btn btn-primary">Detalle</a>
+          </div>
+    </div>
+  </center>
+  </div>
+{%endfor%} {% endblock %}
