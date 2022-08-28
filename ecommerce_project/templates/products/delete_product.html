@@ -1,19 +1,28 @@
 {% extends 'base.html' %}
 
 {% block titulo %}
-Borrar producto
+Borrar Producto
 {% endblock %}
 
-{% block contenido_que_cambia %}
-
-<h2>Titulo del producto: {{object.title}}</h2>
-
-<p>Esta seguro que desea eliminarlo?</p>
-
+{% block contenido_que_cambia %} 
 <form action="" method="POST">
     {% csrf_token %}
-    <input type="submit" value="Borrar">
-</form>
-
-
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-12">
+                <center>
+                <h1 class="display-4 my-3">BORRAR PRODUCTOS</h1>
+                <table>
+    
+        {{form.as_table}}
+    
+    </table>
+    
+    <p><input type="submit" value="Borrar"></p>
+    
+    </form>
+</center>
+    </div>
+    </div>
+</div>
 {% endblock %}

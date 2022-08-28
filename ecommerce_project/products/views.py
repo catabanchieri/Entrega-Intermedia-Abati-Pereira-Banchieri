@@ -1,5 +1,5 @@
 from django.views.generic import ListView, DetailView, CreateView, DeleteView, \
-    UpdateView
+    UpdateView, DetailView
 from .forms import Forms_products
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
@@ -12,15 +12,14 @@ class List_products(ListView):
 
     def get(self, request):
         form = self.form_class(initial=self.initial)
-        return render(request, self.products_list, {'form': form})
+        return render(request, self.template_name, {'form': form})
 
     def post(self, request):
         form = self.form_class(request.POST)
         if form.is_valid():
-            # <process form cleaned data>
-            return HttpResponseRedirect('products/products_list/')
+            return HttpResponseRedirect('/products/products_list/')
 
-        return render(request, self.products_list, {'form': form})
+        return render(request, self.template_name, {'form': form})
 
 class Detail_product(DetailView):
     form_class = Forms_products
@@ -29,34 +28,31 @@ class Detail_product(DetailView):
 
     def get(self, request):
         form = self.form_class(initial=self.initial)
-        return render(request, self.detail_products, {'form': form})
+        return render(request, self.template_name, {'form': form})
 
     def post(self, request):
         form = self.form_class(request.POST)
         if form.is_valid():
-            # <process form cleaned data>
-            return HttpResponseRedirect('products/detail_products/')
+            return HttpResponseRedirect('/products/products_list/')
 
-        return render(request, self.detail_products, {'form': form})
+        return render(request, self.template_name, {'form': form})
 
 
 class Create_product(CreateView):
     form_class = Forms_products
     initial = {'key': 'value'}
     template_name = 'products/new_product.html'
-    #fields = '__all__'
 
     def get(self, request):
         form = self.form_class(initial=self.initial)
-        return render(request, self.new_product, {'form': form})
+        return render(request, self.template_name, {'form': form})
 
     def post(self, request):
         form = self.form_class(request.POST)
         if form.is_valid():
-            # <process form cleaned data>
-            return HttpResponseRedirect('products/products_list/')
+            return HttpResponseRedirect('/products/products_list/')
 
-        return render(request, self.new_product, {'form': form})
+        return render(request, self.template_name, {'form': form})
 
 
 class Delete_product(DeleteView):
@@ -66,15 +62,14 @@ class Delete_product(DeleteView):
 
     def get(self, request):
         form = self.form_class(initial=self.initial)
-        return render(request, self.delete_product, {'form': form})
+        return render(request, self.template_name, {'form': form})
 
-    def post(self, request, *args, **kwargs):
+    def post(self, request):
         form = self.form_class(request.POST)
         if form.is_valid():
-            # <process form cleaned data>
-            return HttpResponseRedirect('products/products_list/')
-
-        return render(request, self.delete_product, {'form': form})
+            return HttpResponseRedirect('/products/products_list/')
+        
+        return render(request, self.template_name, {'form': form})
 
 
 class Update_product(UpdateView):
@@ -85,15 +80,14 @@ class Update_product(UpdateView):
 
     def get(self, request):
         form = self.form_class(initial=self.initial)
-        return render(request, self.update_product, {'form': form})
+        return render(request, self.template_name, {'form': form})
 
     def post(self, request):
         form = self.form_class(request.POST)
         if form.is_valid():
-            # <process form cleaned data>
-            return HttpResponseRedirect('products/products_list/')
+            return HttpResponseRedirect('/products/products_list/')
 
-        return render(request, self.update_product, {'form': form})
+        return render(request, self.template_name, {'form': form})
 class Search_product(ListView):
     form_class = Forms_products
     initial = {'key': 'value'}
@@ -101,13 +95,13 @@ class Search_product(ListView):
 
     def get(self, request):
         form = self.form_class(initial=self.initial)
-        return render(request, self.search_product, {'form': form})
+        return render(request, self.template_name, {'form': form})
 
     def post(self, request):
         form = self.form_class(request.POST)
         if form.is_valid():
-            # <process form cleaned data>
-            return HttpResponseRedirect('products/search_product')
+            return HttpResponseRedirect('/products/products_list/')
 
-        return render(request, self.search_product, {'form': form})
+        return render(request, self.template_name, {'form': form})
+
 

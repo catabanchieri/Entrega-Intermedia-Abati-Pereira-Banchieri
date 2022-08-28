@@ -7,9 +7,12 @@ class Forms_products(forms.Form):
     description = forms.CharField(max_length=200)
     stock = forms.IntegerField()
     size = forms.CharField(max_length=5)  # S, M, L, XL, XXL
+    #available = forms.BooleanField(default=True)
+    
+    
     #image = forms.ImageField(upload_to='products/%Y/%m/%d', blank=True)
-    #created = forms.DateTimeField(auto_now_add=True)
-    #updated = forms.DateTimeField(auto_now=True)
+
+
 
 class Forms_category(forms.Form):
     name = forms.CharField(max_length=50)
