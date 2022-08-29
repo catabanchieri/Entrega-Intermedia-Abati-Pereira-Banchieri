@@ -17,7 +17,7 @@ def login_request(request):
             if user is not None:
                 login(request,user)
                 context={'message' :f'{username} Bienvenido a TIENDA !!, Encontraras tu prenda ideal!'}
-                return render (request, 'home.html',context=context)    #DESPUES PASARLO AL NUEVO LINK DE HOME
+                return render (request, 'home/index.html',context=context)    #DESPUES PASARLO AL NUEVO LINK DE HOME
         
         return render(request,'users/login.html',{'error': 'Usuario o contraseña incorrectas','form':form})
     
