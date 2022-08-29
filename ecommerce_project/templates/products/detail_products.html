@@ -4,7 +4,7 @@
 <center>
 <h1 class="display-4 my-3">DETALLE DE PRODUCTOS</h1>
 </center>
-{%for products in products%}
+
   <div class="container mt-3">
     <center>
         <div class="card" style="width: 18rem">
@@ -19,9 +19,8 @@
             <p class="card-text">Descripción: {{products.description}}</p>
             <p class="card-text">Stock: {{products.stock}}</p>
             <p class="card-text">Talle: {{products.size}}</p>
-            <a href="#" class="btn btn-primary">Detalle</a>
           </div>
     </div>
   </center>
   </div>
-{%endfor%} {% endblock %}
+{% endblock %}
