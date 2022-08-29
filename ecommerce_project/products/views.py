@@ -1,44 +1,109 @@
-from django.shortcuts import render, redirect
-from products.models import Products
-from products.forms import Forms_products
+from django.views.generic import ListView, DetailView, CreateView, DeleteView, \
+    UpdateView, DetailView, TemplateView
 
-def create_product(request):
+from .models import Products
+from .forms import Forms_products
+from django.http import HttpResponseRedirect
+from django.shortcuts import render
+
+
+'''
+CREATE PRODUCTS VIEW
+'''
+class Create_product(CreateView):
+    form_class = Forms_products
+    template_name = 'products/new_product.html'
+    success_url = '/products/products_list/'
+
+'''
+LIST PRODUCTS VIEW
+'''
+class List_products(ListView):
+    model = Products
+    template_name = 'products/products_list.html'
+    context_object_name = 'products'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['products'] = context['products'].order_by('name')
+        return context
+
+
+'''
+DELETE PRODUCTS VIEW
+'''
+class Delete_product(DeleteView):
+    model = Products
+    success_url = '/products/products_list/' 
     
-    if request.method == 'POST':
-        form = Forms_products(request.POST)
+    def delete (self, request, pk):
+        product = self.get_object(pk)
+        print("producto", product)
+        product.delete()
+        return HttpResponseRedirect('/products/products_list/')
 
-        if form.is_valid():
-            Products.objects.create(
-                name = form.cleaned_data['name'],
-                price = form.cleaned_data['price'],
-                description = form.cleaned_data['description'],
-                stock = form.cleaned_data['stock'],
-                size = form.cleaned_data['size'],
-                #image = form.cleaned_data['image']
-            )
-            
-            return redirect(products_list)
+class list_delete_products(ListView):
+    model = Products
+    template_name = 'products/delete_products.html'
+    context_object_name = 'products'
 
-    elif request.method == 'GET':
-        form = Forms_products()
-        context = {'form':form}
-        return render(request, 'products/new_product.html', context=context)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['products'] = context['products'].order_by('name')
+        context ['is_delete'] = True
+        return context
 
-def products_list(request):
-    products = Products.objects.all() #Trae todos
-    context = {
-        'products':products
-    }
-    return render(request, 'products/products_list.html', context=context)
 
-def menu(request):
-    return render(request, 'products/menu.html', context={})
+'''
+UPDATE PRODUCTS VIEW
+'''
+class Update_product(UpdateView):
+   model = Products
+   fields = '__all__'
+   success_url = '/products/products_list/'
+   template_name = 'products/update_product.html'
 
-def search_products(request):
-    search=request.GET['search']
-    print(search)
-    products=Products.objects.filter(name__icontains=search)
-    print(products)
-    context={'products':products}
-    return render(request,'products/search_products.html',context=context)
+class list_update_products(ListView):
+    model = Products
+    template_name = 'products/update_products.html'
+    context_object_name = 'products'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['products'] = context['products'].order_by('name')
+        context ['is_update'] = True
+        return context
+
+
+class Detail_product(DetailView):
+    model = Products
+    template_name = 'products/detail_products.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['products'] = context['products']
+        return context
+
+
+'''
+SEARCH PRODUCTS VIEW
+'''
+class Search_product(TemplateView):
+    model = Products
+    template_name = 'products/search_product.html'
+
+    def get(self, request, *args, **kwargs):
+        query = request.GET.get('search', '')
+        print("query",query)
+        self.products = Products.objects.filter(name__icontains=query)
+        return super().get(request, *args, **kwargs)
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['products'] = self.products
+        return context
+
+
+
+
 
