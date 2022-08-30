@@ -4,7 +4,8 @@ from django.views.generic import ListView, DetailView, CreateView, DeleteView, \
 from .models import Products
 from .forms import Forms_products
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 '''
@@ -37,10 +38,14 @@ class Delete_product(DeleteView):
     success_url = '/products/products_list/' 
     
     def delete (self, request, pk):
-        product = self.get_object(pk)
-        print("producto", product)
-        product.delete()
-        return HttpResponseRedirect('/products/products_list/')
+        if request.user.is_authenticathed and request.user.is_superuser:
+
+            product = self.get_object(pk)
+            print("producto", product)
+            product.delete()
+            return HttpResponseRedirect('/products/products_list/')
+        
+        return redirect('login')
 
 class list_delete_products(ListView):
     model = Products
@@ -58,10 +63,12 @@ class list_delete_products(ListView):
 UPDATE PRODUCTS VIEW
 '''
 class Update_product(UpdateView):
-   model = Products
-   fields = '__all__'
-   success_url = '/products/products_list/'
-   template_name = 'products/update_product.html'
+    
+        model = Products
+        fields = '__all__'
+        success_url = '/products/products_list/'
+        template_name = 'products/update_product.html'
+
 
 class list_update_products(ListView):
     model = Products
@@ -69,6 +76,7 @@ class list_update_products(ListView):
     context_object_name = 'products'
 
     def get_context_data(self, **kwargs):
+        
         context = super().get_context_data(**kwargs)
         context['products'] = context['products'].order_by('name')
         context ['is_update'] = True
