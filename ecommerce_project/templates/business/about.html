@@ -3,12 +3,12 @@
 
 {% block contenido_que_cambia %} 
 <center>
-<font color="purple">
-    <h1 class="display-3 my-3"; style="background-color:rgba(228, 140, 143, 0.438); font-family:'Times New Roman', Times, serif; font-style:italic;">E S S E N C E</h1>
+<font color="blue">
+    <h1 class="display-3 my-1"; style="background-color:rgba(125, 124, 197, 0.438); font-family:'Times New Roman', Times, serif; font-style:italic;">E S S E N C E</h1>
 </font>
 </center>
 <center>
-    <div class="container-fluid"; style="background-color:rgb(238, 131, 190);">
+    <div class="container-fluid"; style="background-color:rgb(106, 136, 218);">
         <font color="White"; face="Brush Script MT,verdana">
             <h3 class="display-4 my-1">Sobre nosotras</h3>
         </font>
@@ -25,54 +25,33 @@
 </center>
   </div>
 
-<div class="container mt-3">
-    <center>
-        <div class="card" style="width: 12rem">
-          <img
-            class="image"
-            src="https://images.unsplash.com/photo-1581067721837-e4809b29692d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
-            alt="No image"
-          />
-          <div class="card-body">
-            <h5 class="card-title">Carolina Pereira</h5>
-            <p class="card-text"> 32 años </p>
-            <p class="card-text">Co-fundadora de ESSENCE</p>
-          </div>
-        </div>
-    </center>
-</div>
-
-<div class="container mt-3">
-    <center>
-        <div class="card" style="width: 12rem">
-          <img
-            class="image"
-            src="https://images.unsplash.com/photo-1581067721837-e4809b29692d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
-            alt="No image"
-          />
-          <div class="card-body">
-            <h5 class="card-title">Catalina Banchieri</h5>
-            <p class="card-text"> 23 años </p>
-            <p class="card-text">Co-fundadora de ESSENCE</p>
-          </div>
-        </div>
-    </center>
-</div>
-
-<div class="container mt-3">
-    <center>
-        <div class="card" style="width: 12rem">
-          <img
-            class="image"
-            src="https://images.unsplash.com/photo-1581067721837-e4809b29692d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
-            alt="No image"
-          />
-          <div class="card-body">
-            <h5 class="card-title">Sofía Abati</h5>
-            <p class="card-text"> 21 años </p>
-            <p class="card-text">Co-fundadora de ESSENCE</p>
-          </div>
-        </div>
-    </center>
+  <table class="table table-dark">
+    <thead>
+      <tr>
+        <th scope="col">Sofia</th>
+        <th scope="col">Catalina</th>
+        <th scope="col">Carolina</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row"></th>
+        <td>21 años</td>
+        <td>23 años</td>
+        <td>32 años</td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>@fat</td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td colspan="2">Larry the Bird</td>
+        <td>@twitter</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 {% endblock %}
