@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block titulo %}
-Crear usuario
+Complete su perfil
 {% endblock %}
 
 {% block contenido_que_cambia %} 
@@ -11,15 +11,15 @@ Crear usuario
         <div class="row">
             <div class="col-12">
                 <center>
-                <h3 class="display-4 my-3">Crea un usuario</h3>
+                <h3 class="display-4 my-3">Tu Perfil</h3>
+                <h4>Usuario: @{{user.username}}</h4>
                 <table>
     
         {{form.as_table}}
     
     </table>
     
-    <p><input type="submit" value="Registrarme"></p>
+    <p><input type="submit" value="Guardar"></p>
     
     </form>
 {% endblock %}
-    

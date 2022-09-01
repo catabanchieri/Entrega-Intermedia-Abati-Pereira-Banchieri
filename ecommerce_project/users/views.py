@@ -1,9 +1,11 @@
 
+from collections import UserList
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
-from users.forms import User_registration_form
+from users.forms import User_registration_form, Profile_form
 from django.contrib.auth.views import LogoutView
+from users.models import Profile
 
 # Create your views here.
 
@@ -17,7 +19,7 @@ def login_request(request):
             if user is not None:
                 login(request,user)
                 context={'message' :f'{username} Bienvenido a TIENDA !!, Encontraras tu prenda ideal!'}
-                return render (request, 'home/index.html',context=context)    
+                return render (request, 'home/index.html',context=context)     
         
         return render(request,'users/login.html',{'error': 'Usuario o contraseña incorrectas','form':form})
     
@@ -30,6 +32,7 @@ def register(request):
         form=User_registration_form(request.POST)
         if form.is_valid():
             form.save()
+
             return redirect('login')
         
         context={'errors':form.errors}
@@ -40,3 +43,28 @@ def register(request):
     elif request.method=='GET':
         form=User_registration_form()
         return render(request,'users/register.html',{'form':form})
+
+
+# ## PERFILES
+def create_profile(request):
+    if request.method=='POST':
+         form=Profile_form(request.POST)
+         if form.is_valid():
+             Profile.objects.create(
+                
+                     username = form.cleaned_data['username'],
+                     email = form.cleaned_data['email'],
+                     name= form.cleaned_data['name'],
+                     surname= form.cleaned_data['surname'],
+                     birth_date= form.cleaned_data['birth_date'],
+                     address= form.cleaned_data['address']
+                   
+                 )
+                
+             return render (request, 'home/index.html',context=context)  
+
+    elif request.method == 'GET':
+         form = Profile_form()
+         context = {'form':form}
+         return render(request, 'users/new_profile.html', context=context)
+     
