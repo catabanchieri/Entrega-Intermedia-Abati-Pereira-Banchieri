@@ -50,18 +50,9 @@ def create_profile(request):
     if request.method=='POST':
          form=Profile_form(request.POST)
          if form.is_valid():
-             Profile.objects.create(
-                
-                     username = form.cleaned_data['username'],
-                     email = form.cleaned_data['email'],
-                     name= form.cleaned_data['name'],
-                     surname= form.cleaned_data['surname'],
-                     birth_date= form.cleaned_data['birth_date'],
-                     address= form.cleaned_data['address']
-                   
-                 )
-                
+             form.save()
              return render (request, 'home/index.html',context=context)  
+        
 
     elif request.method == 'GET':
          form = Profile_form()

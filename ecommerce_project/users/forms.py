@@ -2,6 +2,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from users.models import Profile
 
 class User_registration_form(UserCreationForm):
     email=forms.EmailField(required=True)
@@ -16,9 +17,14 @@ class User_registration_form(UserCreationForm):
         help_texts={k:'' for k in fields} 
 
 
-class Profile_form(forms.Form):
+class Profile_form(forms.ModelForm):
     name= forms.CharField(label='Nombre')
     surname= forms.CharField(label='Apellido')
     birth_date= forms.DateField(label='Fecha de nacimiento')
     address= forms.CharField(label='Direccion')
+
+    class Meta:
+        model = Profile
+        fields=('name','surname','birth_date', 'address')
+
     
