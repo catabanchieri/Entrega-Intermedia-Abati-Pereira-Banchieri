@@ -1,6 +1,7 @@
 from django.urls import path
 from business.views import stores_list, create_store, opinions_list, create_opinion, menu, about
 
+
 urlpatterns = [
     path('menu/', menu, name='menu'),
     path('stores_list/', stores_list, name='stores_list'),

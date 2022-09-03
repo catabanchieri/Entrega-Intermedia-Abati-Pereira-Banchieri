@@ -64,5 +64,3 @@ def opinions_list(request):
 
 def about (request):
     return render(request, 'business/about.html', context={})
-
-
