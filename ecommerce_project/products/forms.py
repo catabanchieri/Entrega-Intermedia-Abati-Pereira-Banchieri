@@ -21,7 +21,7 @@ class Forms_products(forms.ModelForm):
             'description': forms.Textarea(attrs={'class': 'form-control'}),
             'stock': forms.NumberInput(attrs={'class': 'form-control'}),
             'size': forms.Select(attrs={'class': 'form-control'}),
-            'image': forms.ImageField()
+            'image': forms.ImageField(required=False)
         }
 
 

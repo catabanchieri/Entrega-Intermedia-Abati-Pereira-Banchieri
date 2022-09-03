@@ -6,7 +6,7 @@ class Products(models.Model):
         stock = models.IntegerField()
         size = models.CharField(max_length=5)  # S, M, L, XL, XXL
         available = models.BooleanField(default=True)
-        image = models.ImageField(upload_to='products/%Y/%m/%d', blank=True)
+        image = models.ImageField(upload_to='products/%Y/%m/%d', blank=True, null = True)
         created = models.DateTimeField(auto_now_add=True)
         updated = models.DateTimeField(auto_now=True)
 class Meta:
