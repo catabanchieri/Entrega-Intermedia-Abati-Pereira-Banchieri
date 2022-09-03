@@ -5,10 +5,10 @@ class Products(models.Model):
         description = models.CharField(max_length=200)
         stock = models.IntegerField()
         size = models.CharField(max_length=5)  # S, M, L, XL, XXL
-        #available = models.BooleanField(default=True)
-        #image = models.ImageField(upload_to='products/%Y/%m/%d', blank=True)
-        #created = models.DateTimeField(auto_now_add=True)
-        #updated = models.DateTimeField(auto_now=True)
+        available = models.BooleanField(default=True)
+        image = models.ImageField(upload_to='products/%Y/%m/%d', blank=True)
+        created = models.DateTimeField(auto_now_add=True)
+        updated = models.DateTimeField(auto_now=True)
 class Meta:
         verbose_name = 'product'
         verbose_name_plural = 'products'

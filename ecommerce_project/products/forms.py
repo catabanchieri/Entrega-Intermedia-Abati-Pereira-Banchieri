@@ -1,3 +1,4 @@
+from distutils.command.upload import upload
 from random import choices
 from tkinter import Widget
 from django import forms
@@ -20,6 +21,7 @@ class Forms_products(forms.ModelForm):
             'description': forms.Textarea(attrs={'class': 'form-control'}),
             'stock': forms.NumberInput(attrs={'class': 'form-control'}),
             'size': forms.Select(attrs={'class': 'form-control'}),
+            'image': forms.ImageField()
         }
 
 

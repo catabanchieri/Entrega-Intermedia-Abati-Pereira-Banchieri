@@ -20,7 +20,7 @@ BÚSQUEDA DE PRODUCTOS
 
     {% if is_update%}
     <a href="{% url 'update_product' product.id %}" class="btn btn-primary">Actualizar</a>
-  {% endif %}
+    {% endif %}
 
   <a href="{% url 'detail_product' product.id %}" class="btn btn-success">Detalle</a>
 
