@@ -1,0 +1,35 @@
+{% extends 'base.html' %} 
+{% block titulo %} Mi perfil {% endblock %}
+{% block contenido_que_cambia %} 
+<div class="container-fluid my-4">
+  <center>
+    <h1 class="display-4 my-3">Mi perfil</h1>
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 my-1">
+
+<div class="card" style="width: 18rem">
+  <img class="card-img-top" src="https://png.pngtree.com/png-clipart/20191120/original/pngtree-outline-user-icon-png-image_5045523.jpg" width="25%" height="25%" alt="Card image cap"//images.unsplash.c />
+  <div class="card-body">
+    <h5 class="card-title">@{{user.username}}</h5>
+
+   
+
+    <p class="card-text">Nombre: {{user.profile.name}}</p>
+    <p class="card-text">Apellido: {{user.profile.surname}}</p>
+    <p class="card-text">Email: {{user.profile.email}}</p>
+    <p class="card-text">Fecha de nacimiento: {{user.profile.birth_date}}</p>
+    <p class="card-text">Telefono: {{user.profile.phone_number}}</p>
+    <p class="card-text">Direccion: {{user.profile.address}}</p>
+
+   
+    <a href="/users/update_profile/" class="btn btn-primary">Editar</a>
+    <a href="/users/delete_profile/"  class="btn btn-secondary">Borrar</a>
+   
+  
+  </div>
+</div>
+</div>
+</center>
+</div>
+ 
+{% endblock %}

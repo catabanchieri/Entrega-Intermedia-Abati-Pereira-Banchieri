@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block titulo %}
-Complete su perfil
+Editar perfil
 {% endblock %}
 
 {% block contenido_que_cambia %} 
@@ -11,15 +11,14 @@ Complete su perfil
         <div class="row">
             <div class="col-12">
                 <center>
-                <h3 class="display-4 my-3">Tu Perfil</h3>
-                <h4>Usuario: @{{user.username}}</h4>
+                <h3 class="display-4 my-3">Editar mi perfil</h3>
                 <table>
     
         {{form.as_table}}
     
     </table>
     
-    <p><input type="submit" value="Guardar"></p>
+    <p><input type="submit" value="Guardar cambios"></p>
     
     </form>
 {% endblock %}
