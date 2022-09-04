@@ -5,6 +5,14 @@ Iniciar sesion
 {% endblock %}
 
 {% block contenido_que_cambia %} 
+{% for message in messages %}
+
+    <div class="alert alert-success">
+        <a class="close" href="#" data-dismiss="alert">×</a>
+           {{ message }}
+    </div>
+
+{% endfor %}
 <form action="" method="POST">
     {% csrf_token %}
     <div class="container mt-4">

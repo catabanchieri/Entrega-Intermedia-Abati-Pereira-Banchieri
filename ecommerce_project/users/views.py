@@ -1,11 +1,10 @@
-
-from collections import UserList
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login, authenticate
 from users.forms import User_registration_form, Profile_form
-from django.contrib.auth.views import LogoutView
-from users.models import Profile
+from django.contrib import messages
+from django.views.generic import TemplateView, UpdateView
+from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -32,20 +31,41 @@ def register(request):
         form=User_registration_form(request.POST)
         if form.is_valid():
             form.save()
-
+            messages.success(request, 'Su cuenta se ha creado con éxito') # se agrega el mensaje de que su cuenta fue creada con exito
             return redirect('login')
         
-        context={'errors':form.errors}
         form= User_registration_form
-        context['form']=form
-        return render(request, 'users/register.html',{'form':form})
+        context={'form':form}
+        if form.errors:
+            print('error',form.errors)
+        return render(request, 'users/register.html',context)
 
     elif request.method=='GET':
         form=User_registration_form()
         return render(request,'users/register.html',{'form':form})
 
 
-# ## PERFILES
+class View_profile(TemplateView):
+    model = User
+    template_name = 'users/profile.html'
+
+    def get(self, request, *args, **kwargs):
+        user = self.request.user
+        self.users = User.objects.filter(username=user)
+        return super().get(request, *args, **kwargs)
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['users'] = self.users
+        return context
+
+class Update_profile(UpdateView):
+        model = User
+        fields = '__all__'
+        success_url = '/users/profile/'
+        template_name = 'users/update_profile.html'
+
+# PERFILES
 def create_profile(request):
     if request.method=='POST':
          form=Profile_form(request.POST)

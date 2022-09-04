@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
 
@@ -14,4 +15,13 @@ class Profile(models.Model):
         return self.user.username
     
     #avatar = models.ImageField(default='default.jpg', upload_to='profile_images')
-    
+
+# creo una clase para implementar los roles de admin y de usuario final para visualizar el CRUD
+
+'''
+class User(AbstractUser):
+    ADMINISTRATOR = 1
+    FINALUSER = 2
+    ROLE_CHOICES = (ADMINISTRATOR, 'administrator', FINALUSER, 'finaluser')
+    role = models.PositiveSmallIntegerField(choices=ROLE_CHOICES, blank=True, null=True)
+'''

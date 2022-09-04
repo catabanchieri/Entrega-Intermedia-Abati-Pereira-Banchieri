@@ -34,10 +34,6 @@
         <span class="navbar-toggler-icon"></span>
       </button>
 
-
-<body>
- 
-
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
@@ -63,11 +59,12 @@
               Productos
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="/products/new_product/"
-                >Crear Productos</a
-              >
               <a class="dropdown-item" href="/products/products_list"
                 >Listar Productos</a
+              >
+              {%if perms.auth.add_products%}
+              <a class="dropdown-item" href="/products/new_product/"
+                >Crear Productos</a
               >
               <a class="dropdown-item" href="/products/delete_product"
                 >Borrar Productos</a
@@ -75,6 +72,7 @@
               <a class="dropdown-item" href="/products/update_product"
                 >Actualizar Productos</a
               >
+              {%endif%}
             </div>
           </li>
 
@@ -85,7 +83,7 @@
         </li>
 
         <li class="nav-item active">
-          <a class="nav-link" href="/users/new-profile/" >Crear Perfil<span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/users/profile/" >Ver Perfil<span class="sr-only">(current)</span></a>
         </li>
 
         {% else %}
