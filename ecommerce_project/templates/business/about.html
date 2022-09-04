@@ -1,8 +1,6 @@
-{% load static %}
-<link rel="shortcut icon" href="{% static 'media/about/Carolina_PEREIRA.jpeg' %}">
+{% extends 'base.html' %}
 
-
-{% extends 'base.html' %} {% block titulo %} About us {% endblock %}
+{% block titulo %} About us {% endblock %}
 
 
 {% block contenido_que_cambia %} 
@@ -37,8 +35,8 @@
       <div class="card text-white" style="width: 18rem; background-color: rgba(223, 100, 100, 0.637);">
           <img
             class="image"
-            src="/about/Carolina_PEREIRA.jpeg"
-            alt="No image"
+            src="about/Carolina_PEREIRA.jpg"
+            alt="Catalina Banchieri"
           />
           <div class="card-body">
             <h5 class="card-title">Catalina Banchieri</h5>
@@ -50,7 +48,7 @@
       <div class="card text-white" style="width: 18rem; background-color: rgba(223, 100, 100, 0.637);">
         <img
           class="image"
-          src="/ecommerce_project/img/Carolina_PEREIRA.jpeg/"
+          src="/about/Carolina_PEREIRA.jpg"
           alt="Carolina Pereira"
         />
         <div class="card-body">
