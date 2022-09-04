@@ -54,16 +54,16 @@ def register(request):
 def create_profile(request):
     if request.method=='POST':
 
-         form=Profile_form(request.POST)
-         if form.is_valid():
+        form=Profile_form(request.POST)
+        if form.is_valid():
 
             u=User.objects.get(username=request.user)
             profile=Profile.objects.create(user=u,name=form.cleaned_data['name'],surname=form.cleaned_data['surname'],email=form.cleaned_data['email'],birth_date=form.cleaned_data['birth_date'],phone_number=form.cleaned_data['phone_number'],address=form.cleaned_data['address'])
 
             
-            return render (request, 'home/index.html',context={})  
+            return render (request, 'users/user_profile.html',context={})  
         
-         return render(request,'users/create_profile.html',{'error': 'Datos incorrectos','form':form})
+        return render(request,'users/create_profile.html',{'error': 'Datos incorrectos','form':form})
         
 
     elif request.method == 'GET':
