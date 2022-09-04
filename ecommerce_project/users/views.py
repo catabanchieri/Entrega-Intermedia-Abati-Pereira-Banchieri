@@ -70,4 +70,45 @@ def create_profile(request):
         form = Profile_form()
         context = {'form':form}
         return render(request, 'users/create_profile.html', context=context)
+
+#ver perfil de usuario
+@login_required
+def user_profile(request):
+    profile=Profile.objects.filter(user=request.user.id)
+    return render(request,'users/user_profile.html',context={})
+
+@login_required
+def update_profile(request):
+    if request.method=='GET':
+        profile=Profile.objects.get(user=request.user.id)
+        form =Profile_form(initial={'name':profile.name,'surname':profile.surname, 'birth_date':profile.birth_date,'address':profile.address})
+        context={'form':form}
+        return render(request,'users/update_profile.html',context=context)
+    
+    elif request.method=='POST':
+        form=Profile_form(request.POST)
+        if form.is_valid():
+            profile=Profile.objects.get(user=request.user.id)
+            profile.name=form.cleaned_data['name']
+            profile.surname=form.cleaned_data['surname']
+            profile.birth_date=form.cleaned_data['birth_date']
+            profile.address=form.cleaned_data['address']
+            profile.save()
+
+            return redirect(user_profile)
+
+@login_required
+def delete_profile(request):
+    if request.method=='GET':
+        profile=Profile.objects.get(user=request.user.id)
+        context={'profile':profile}
+        return render(request,'users/delete_profile.html',context)
+    
+    elif request.method=='POST':
+        profile=Profile.objects.get(user=request.user.id)
+        profile.delete()
+        return redirect(user_profile)
+
+
+#initial={'name':user.profile.name,'surname':user.profile.surname, 'birth_date':profile.birth_date,'address':profile.address}
      
