@@ -58,7 +58,7 @@ def create_profile(request):
          if form.is_valid():
 
             u=User.objects.get(username=request.user)
-            profile=Profile.objects.create(user=u,name=form.cleaned_data['name'],surname=form.cleaned_data['surname'],birth_date=form.cleaned_data['birth_date'],address=form.cleaned_data['address'])
+            profile=Profile.objects.create(user=u,name=form.cleaned_data['name'],surname=form.cleaned_data['surname'],email=form.cleaned_data['email'],birth_date=form.cleaned_data['birth_date'],phone_number=form.cleaned_data['phone_number'],address=form.cleaned_data['address'])
 
             
             return render (request, 'home/index.html',context={})  
@@ -80,10 +80,14 @@ def user_profile(request):
 @login_required
 def update_profile(request):
     if request.method=='GET':
+        
         profile=Profile.objects.get(user=request.user.id)
-        form =Profile_form(initial={'name':profile.name,'surname':profile.surname, 'birth_date':profile.birth_date,'address':profile.address})
+         
+        form =Profile_form(initial={'name':profile.name,'surname':profile.surname, 'email':profile.email,'birth_date':profile.birth_date,'phone_number':profile.phone_number,'address':profile.address})
         context={'form':form}
         return render(request,'users/update_profile.html',context=context)
+        
+        
     
     elif request.method=='POST':
         form=Profile_form(request.POST)
@@ -91,7 +95,9 @@ def update_profile(request):
             profile=Profile.objects.get(user=request.user.id)
             profile.name=form.cleaned_data['name']
             profile.surname=form.cleaned_data['surname']
+            profile.email=form.cleaned_data['email']
             profile.birth_date=form.cleaned_data['birth_date']
+            profile.phone_number=form.cleaned_data['phone_number']
             profile.address=form.cleaned_data['address']
             profile.save()
 
@@ -110,5 +116,3 @@ def delete_profile(request):
         return redirect(user_profile)
 
 
-#initial={'name':user.profile.name,'surname':user.profile.surname, 'birth_date':profile.birth_date,'address':profile.address}
-     
