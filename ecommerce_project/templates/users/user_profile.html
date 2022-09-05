@@ -19,15 +19,15 @@
   {%endif%}
   <div class="card-body">
     <h5 class="card-title">@{{user.username}}</h5>
-
-   
-
-    <p class="card-text">Nombre: {{user.profile.name}}</p>
+    
+    <img class="card-img-top" src="user.profile.avatar" width="25%" height="25%" alt="Card image cap" />
+        <p class="card-text">Nombre: {{user.profile.name}}</p>
     <p class="card-text">Apellido: {{user.profile.surname}}</p>
     <p class="card-text">Email: {{user.profile.email}}</p>
     <p class="card-text">Fecha de nacimiento: {{user.profile.birth_date}}</p>
     <p class="card-text">Telefono: {{user.profile.phone_number}}</p>
     <p class="card-text">Direccion: {{user.profile.address}}</p>
+    <p class="card-text">Foto: {{user.profile.avatar}}</p>
 
    
     <a href="/users/update_profile/" class="btn btn-primary">Editar</a>

@@ -11,9 +11,9 @@ class Profile(models.Model):
     birth_date= models.DateField()
     phone_number= models.IntegerField(default='00000')
     address= models.CharField(max_length=40 )
-    avatar = models.ImageField( upload_to='profile_images', blank=True, null=True)
+    avatar = models.ImageField( upload_to='profile_images/', blank=True, null=True)
 
     def __str__(self):
-        return self.user.username
+        return self.user.username 
     
     
