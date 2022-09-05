@@ -80,12 +80,17 @@ def user_profile(request):
 @login_required
 def update_profile(request):
     if request.method=='GET':
-        
-        profile=Profile.objects.get(user=request.user.id)
+        try:
+            profile=Profile.objects.get(user=request.user.id)
          
-        form =Profile_form(initial={'name':profile.name,'surname':profile.surname, 'email':profile.email,'birth_date':profile.birth_date,'phone_number':profile.phone_number,'address':profile.address})
-        context={'form':form}
-        return render(request,'users/update_profile.html',context=context)
+            form =Profile_form(initial={'name':profile.name,'surname':profile.surname, 'email':profile.email,'birth_date':profile.birth_date,'phone_number':profile.phone_number,'address':profile.address})
+            context={'form':form}
+            return render(request,'users/update_profile.html',context=context)
+        
+        except Exception as e: 
+            print ('error',type(e).__name__)
+            if type(e).__name__== 'DoesNotExist':
+                return render(request,'users/no_profile.html',context={})
         
         
     
@@ -103,13 +108,20 @@ def update_profile(request):
             profile.save()
 
             return redirect(user_profile)
+            
 
 @login_required
 def delete_profile(request):
     if request.method=='GET':
-        profile=Profile.objects.get(user=request.user.id)
-        context={'profile':profile}
-        return render(request,'users/delete_profile.html',context)
+        try:
+            profile=Profile.objects.get(user=request.user.id)
+            context={'profile':profile}
+            return render(request,'users/delete_profile.html',context)
+        
+        except Exception as e: 
+            print ('error',type(e).__name__)
+            if type(e).__name__== 'DoesNotExist':
+                return render(request,'users/no_profile.html',context={})
     
     elif request.method=='POST':
         profile=Profile.objects.get(user=request.user.id)
