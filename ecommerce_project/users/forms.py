@@ -24,9 +24,18 @@ class Profile_form(forms.ModelForm):
     birth_date= forms.DateField(label='Fecha de nacimiento')
     phone_number= forms.IntegerField(label='Telefono')
     address= forms.CharField(label='Direccion')
+    avatar= forms.ImageField(label='image', required=False)
 
     class Meta:
         model = Profile
-        fields=('name','surname','email','birth_date', 'phone_number','address')
+        fields=('name','surname','email','birth_date', 'phone_number','address', 'avatar')
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'surname': forms.NumberInput(attrs={'class': 'form-control'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control'}),
+            'birth_date': forms.DateInput(attrs={'class': 'form-control'}),
+            'phone_number': forms.NumberInput(attrs={'class': 'form-control'}),
+            'adress': forms.TextInput(attrs={'class': 'form-control'}),
+        }
 
     

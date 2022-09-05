@@ -58,10 +58,10 @@ def create_profile(request):
         if form.is_valid():
 
             u=User.objects.get(username=request.user)
-            profile=Profile.objects.create(user=u,name=form.cleaned_data['name'],surname=form.cleaned_data['surname'],email=form.cleaned_data['email'],birth_date=form.cleaned_data['birth_date'],phone_number=form.cleaned_data['phone_number'],address=form.cleaned_data['address'])
-
+            profile=Profile.objects.create(user=u,name=form.cleaned_data['name'],surname=form.cleaned_data['surname'],email=form.cleaned_data['email'],birth_date=form.cleaned_data['birth_date'],phone_number=form.cleaned_data['phone_number'],address=form.cleaned_data['address'],avatar=form.cleaned_data['avatar'])
+            context={'profile': profile}
             
-            return render (request, 'users/user_profile.html',context={})  
+            return render (request, 'users/user_profile.html',context)  
         
         return render(request,'users/create_profile.html',{'error': 'Datos incorrectos','form':form})
         
@@ -99,6 +99,7 @@ def update_profile(request):
             profile.birth_date=form.cleaned_data['birth_date']
             profile.phone_number=form.cleaned_data['phone_number']
             profile.address=form.cleaned_data['address']
+            profile.avatar=form.cleaned_data['avatar']
             profile.save()
 
             return redirect(user_profile)

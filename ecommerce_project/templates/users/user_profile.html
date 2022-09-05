@@ -8,7 +8,15 @@
     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 my-1">
 
 <div class="card" style="width: 18rem">
-  <img class="card-img-top" src="https://png.pngtree.com/png-clipart/20191120/original/pngtree-outline-user-icon-png-image_5045523.jpg" width="25%" height="25%" alt="Card image cap"//images.unsplash.c />
+  {%if user.profile.avatar%}
+  <img
+    class="card-img-top"
+    src="{{user.profile.avatar.url}}"
+    width="25%"
+    height="25%"
+    alt="Card image cap"
+  />
+  {%endif%}
   <div class="card-body">
     <h5 class="card-title">@{{user.username}}</h5>
 
