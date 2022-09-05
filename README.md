@@ -25,3 +25,6 @@ No existe ningún orden específico para ingresar los datos, por lo que el progr
 - Carolina Pereira([careb36](https://github.com/careb36 "careb36"))
 - Catalina Banchieri([catabanchieri](http://github.com/catabanchieri "catabanchieri"))
 - Camila Abati([sofiabati](https://github.com/sofiabati "sofiabati"))
+
+### VIDEO MUESTRA DEL SISTEMA
+- https://1drv.ms/u/s!Ag7Fuawuj6CYjZ5aaDgFYN1ftYhnjg?e=StZxLD 
