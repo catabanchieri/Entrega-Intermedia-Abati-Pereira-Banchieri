@@ -7,7 +7,6 @@ from django.contrib.auth.views import LogoutView
 from users.models import Profile
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from os.path import exists
 
 # Create your views here.
 
@@ -36,9 +35,12 @@ def register(request):
             form.save()
 
             return redirect('login')
-              
         
-        return render(request,'users/register.html',{'error': 'Usuario o contraseña incorrectas','form':form})
+        
+        form= User_registration_form
+        
+        return render(request,'users/register.html',{'error':'Datos incorrectas','form':form})
+       
         
 
     elif request.method=='GET':
@@ -78,16 +80,12 @@ def user_profile(request):
 @login_required
 def update_profile(request):
     if request.method=='GET':
-           
         
         profile=Profile.objects.get(user=request.user.id)
-            
-            
+         
         form =Profile_form(initial={'name':profile.name,'surname':profile.surname, 'email':profile.email,'birth_date':profile.birth_date,'phone_number':profile.phone_number,'address':profile.address})
         context={'form':form}
         return render(request,'users/update_profile.html',context=context)
-        
-        return redirect(create_profile)
         
         
     
